@@ -15,4 +15,4 @@ mongoose.connect('mongodb+srv://user:a5b4cd@simplecrud.4a9c9.mongodb.net/teste?r
     useFindAndModify: false 
 });
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
