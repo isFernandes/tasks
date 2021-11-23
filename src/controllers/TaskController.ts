@@ -4,27 +4,27 @@ const Task = require("../model/Task");
 
 export default class TaskController {
   //CRIA A TAREFA
-  async create(request: Request, response: Response) {
-    const { description, done } = request.body;
-    try {
-      const task = await Task.create({ description: description, done: done });
+  // async create(request: Request, response: Response) {
+  //   const { description, done } = request.body;
+  //   try {
+  //     const task = await Task.create({ description: description, done: done });
 
-      return response.json(task);
-    } catch (error) {
-      return response.status(200).json(error);
-    }
-  }
+  //     return response.json(task);
+  //   } catch (error) {
+  //     return response.status(200).json(error);
+  //   }
+  // }
 
   //LISTA TODAS AS TAREFAS
-  async index(request: Request, response: Response) {
-    try {
-      const task = await Task.find({});
+  // async index(request: Request, response: Response) {
+  //   try {
+  //     const task = await Task.find({});
 
-      return response.status(200).json(task);
-    } catch (error) {
-      return response.json(error);
-    }
-  }
+  //     return response.status(200).json(task);
+  //   } catch (error) {
+  //     return response.json(error);
+  //   }
+  // }
 
   //ATUALIZA SOMENTE CONTEUDO DA TAREFA
   async updateTask(request: Request, response: Response) {
