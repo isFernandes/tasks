@@ -1,5 +1,5 @@
-import App from "./app";
+import app from "./app";
 
-App.listen(process.env.PORT || 3333, ()=>{
-    console.log("Server is running 🚀")
+app.listen(process.env.PORT, ()=>{
+    console.log(`Server is running on PORT: ${process.env.PORT} 🚀`)
 })

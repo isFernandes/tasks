@@ -7,6 +7,5 @@ export interface IChangeAllTask {
 }
 
 export interface IChangeAllTaskController {
-  service: ChangeAllTaskService;
   handle(request:Request, response:Response): Promise<any>
 }

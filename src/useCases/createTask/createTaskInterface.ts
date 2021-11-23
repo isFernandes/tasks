@@ -7,6 +7,5 @@ export interface ICreateTask {
 }
 
 export interface ICreateTaskController {
-  service: CreateTaskService;
   handle(request:Request, response:Response): Promise<any>
 }

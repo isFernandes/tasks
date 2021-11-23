@@ -1,3 +1,4 @@
+require("dotenv").config();
 import express from 'express';
 import mongoose from 'mongoose';
 import routers from './routers';
@@ -7,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-routers.forEach((route)=>{
+routers.map((route)=>{
     app.use(route)
 })
 
@@ -16,6 +17,11 @@ mongoose.connect(`${process.env.MONGO_URL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false 
+}).then(()=>{
+    console.log('connection with database: OK!')
+}).catch((error)=>{
+    console.log('database error: ')
+    console.log(error)
 });
 
 

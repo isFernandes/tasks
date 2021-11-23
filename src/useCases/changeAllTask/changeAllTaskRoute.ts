@@ -6,6 +6,6 @@ const changeAllTaskRouter = Router()
 const PREFIX = "/api/task";
 
 
-changeAllTaskRouter.put(`${PREFIX}/`, new ChangeAllTaskController().handle);
+changeAllTaskRouter.put(`${PREFIX}/all/change`, new ChangeAllTaskController().handle);
 
 export = changeAllTaskRouter

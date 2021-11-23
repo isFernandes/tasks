@@ -8,7 +8,6 @@ export interface IUpdateTask {
 }
 
 export interface IUpdateTaskController {
-  service: UpdateTaskService;
   handle(request:Request, response:Response): Promise<any>
 }
 

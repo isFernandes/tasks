@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
-import { ICreateTaskController } from "./createTaskInterface";
+import { ICreateTask, ICreateTaskController } from "./createTaskInterface";
 import { CreateTaskService } from "./createTaskService";
 
 class CreateTaskController implements ICreateTaskController{
+  
 
- service = new CreateTaskService()
 
  async handle(request:Request, response:Response){
+   const service = new CreateTaskService();
   const { description, done } = request.body;
   try {
-    const createdTask = await this.service.execute(description, done);
-    return response.json(createdTask);
-  } catch (error) {
-    return response.status(200).json(error);
+    const createdTask = await service.execute(description, done);
+    return response.status(201).json(createdTask);
+  } catch (error:any) {
+    return response.status(400).json({error: error.message});
   }
  }
 }

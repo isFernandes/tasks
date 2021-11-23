@@ -7,6 +7,5 @@ export interface IListTask {
 }
 
 export interface IListTaskController {
-  service: ListTaskService;
   handle(request:Request, response:Response): Promise<any>
 }
