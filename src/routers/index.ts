@@ -1,7 +1,7 @@
-import createTaskRouter from "../useCases/createTask/createTaskRoute";
-import listTaskRouter from "../useCases/listTask/listTaskRoute";
+import taskRoutes from "./task.routes"
 
 
-const router = [createTaskRouter, listTaskRouter]
+
+const router = [taskRoutes.createTaskRouter, taskRoutes.listTaskRouter]
 
 export = router
