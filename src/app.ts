@@ -1,8 +1,9 @@
 require("dotenv").config();
 import express from 'express';
-import mongoose from 'mongoose';
-import routers from './routers';
+// import mongoose from 'mongoose';
 import cors from 'cors';
+import DB from './database/config/db'
+import routers from './routers';
 
 const app = express();
 app.use(cors());
@@ -13,16 +14,7 @@ routers.map((route)=>{
 })
 
 //connection db
-mongoose.connect(`${process.env.MONGO_URL}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false 
-}).then(()=>{
-    console.log('connection with database: OK!')
-}).catch((error)=>{
-    console.log('database error: ')
-    console.log(error)
-});
+DB.connect();
 
 
 export = app
