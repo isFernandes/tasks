@@ -1,4 +1,4 @@
-import TaskModel from "../../Entities/Task/TaskModel";
+import TaskModel from "../../entities/Task/TaskModel";
 import { IChangeAllTask } from "../../repositories/changeAllTaskRepository";
 
 class ChangeAllTaskService implements IChangeAllTask {
