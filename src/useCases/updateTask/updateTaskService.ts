@@ -1,9 +1,9 @@
 import { Schema } from "mongoose";
-import TaskModel from "../../Entities/Task/TaskModel";
-import { IUpdateData, IUpdateTask } from "./updateTaskInterface";
+import TaskModel from "../../entities/Task/TaskModel";
+import { IUpdateDTO, IUpdateTask } from "../../repositories/updateTaskRepository";
 
 class UpdateTaskService implements IUpdateTask {
-  async execute(id:Schema.Types.ObjectId | string, updateData : IUpdateData){
+  async execute(id:Schema.Types.ObjectId | string, updateData : IUpdateDTO){
     await TaskModel.findOneAndUpdate({_id: id}, updateData);
     return await TaskModel.findById({_id: id});
   }

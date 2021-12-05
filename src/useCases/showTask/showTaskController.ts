@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IShowTaskController } from "./showTaskInterface";
+import { IShowTaskController } from "../../repositories/showTaskRepository";
 import { ShowTaskService } from "./showTaskService";
 
 class ShowTaskController implements IShowTaskController{

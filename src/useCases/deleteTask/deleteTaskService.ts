@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
-import TaskModel from "../../Entities/Task/TaskModel";
-import { IDeleteTask } from "./deleteTaskInterface";
+import TaskModel from "../../entities/Task/TaskModel";
+import { IDeleteTask } from "../../repositories/deleteTaskRepository";
 
 class DeleteTaskService implements IDeleteTask {
   async execute(id: Schema.Types.ObjectId | string){

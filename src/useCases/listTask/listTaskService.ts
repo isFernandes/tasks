@@ -1,5 +1,5 @@
-import TaskModel from "../../Entities/Task/TaskModel";
-import { IListTask } from "./listTaskInterface";
+import TaskModel from "../../entities/Task/TaskModel";
+import { IListTask } from "../../repositories/listTaskRepository";
 
 class ListTaskService implements IListTask {
   async execute(){

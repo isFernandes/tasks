@@ -1,5 +1,5 @@
 import TaskModel from "../../Entities/Task/TaskModel";
-import { IChangeAllTask } from "./changeAllTaskInterface";
+import { IChangeAllTask } from "../../repositories/changeAllTaskRepository";
 
 class ChangeAllTaskService implements IChangeAllTask {
   async execute(done:boolean){

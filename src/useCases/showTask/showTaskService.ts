@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
-import TaskModel from "../../Entities/Task/TaskModel";
-import { IShowTask } from "./showTaskInterface";
+import TaskModel from "../../entities/Task/TaskModel";
+import { IShowTask } from "../../repositories/showTaskRepository";
 
 class ShowTaskService implements IShowTask {
   async execute(id: Schema.Types.ObjectId | string){

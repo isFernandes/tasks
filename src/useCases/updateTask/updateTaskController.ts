@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { ITask } from "../../Entities/Task/ITask";
 import { ShowTaskService } from "../showTask/showTaskService";
-import { IUpdateData, IUpdateTaskController } from "./updateTaskInterface";
+import { IUpdateDTO, IUpdateTaskController } from "../../repositories/updateTaskRepository";
 import { UpdateTaskService } from "./updateTaskService";
 
 class UpdateTaskController implements IUpdateTaskController{
@@ -10,7 +9,7 @@ class UpdateTaskController implements IUpdateTaskController{
   async handle(request:Request, response:Response){
   const service = new UpdateTaskService()
   const showService = new ShowTaskService()
-  const data: IUpdateData = {};
+  const data: IUpdateDTO = {};
   
   try {
     const foundedTask: any = await showService.execute(request.params.id);

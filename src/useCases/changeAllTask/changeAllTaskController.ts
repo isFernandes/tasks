@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ListTaskService } from "../listTask/listTaskService";
-import { IChangeAllTaskController } from "./changeAllTaskInterface";
+import { IChangeAllTaskController } from "../../repositories/changeAllTaskRepository";
 import { ChangeAllTaskService } from "./changeAllTaskService";
 
 class ChangeAllTaskController implements IChangeAllTaskController{

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { ITask } from "../../Entities/Task/ITask";
-import { ListTaskService } from "./listTaskService";
+import { ITask } from "../entities/Task/ITask";
 
 export interface IListTask {
   execute(): Promise<ITask[] | null> 

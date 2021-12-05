@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IDeleteTaskController } from "./deleteTaskInterface";
+import { IDeleteTaskController } from "../../repositories/deleteTaskRepository";
 import { DeleteTaskService } from "./deleteTaskService";
 
 class DeleteTaskController implements IDeleteTaskController{

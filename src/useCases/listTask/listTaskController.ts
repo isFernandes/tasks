@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IListTaskController } from "./listTaskInterface";
+import { IListTaskController } from "../../repositories/listTaskRepository";
 import { ListTaskService } from "./listTaskService";
 
 class ListTaskController implements IListTaskController{

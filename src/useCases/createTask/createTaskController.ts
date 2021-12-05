@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { ICreateTask, ICreateTaskController } from "./createTaskInterface";
+import { ICreateTaskController } from "../../repositories/createTaskRepository";
 import { CreateTaskService } from "./createTaskService";
 
 class CreateTaskController implements ICreateTaskController{
   
-
-
  async handle(request:Request, response:Response){
    const service = new CreateTaskService();
   const { description, done } = request.body;

@@ -1,5 +1,5 @@
-import TaskModel from "../../Entities/Task/TaskModel";
-import { ICreateTask } from "./createTaskInterface";
+import TaskModel from "../../entities/Task/TaskModel";
+import { ICreateTask } from "../../repositories/createTaskRepository";
 
 class CreateTaskService implements ICreateTask {
   async execute(description:string, done:boolean = false){
