@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=DEV tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "test": "jest --no-cache --passWithNoTests",
+    "test": "jest --no-cache --passWithNoTests --detectOpenHandles",
     "build": "tsc",
     "start": "node dist/server.js"
   },

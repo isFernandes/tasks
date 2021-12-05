@@ -4,7 +4,7 @@ import { IUpdateDTO, IUpdateTask } from "../../repositories/updateTaskRepository
 
 class UpdateTaskService implements IUpdateTask {
   async execute(id:Schema.Types.ObjectId | string, updateData : IUpdateDTO){
-    await TaskModel.findOneAndUpdate({_id: id}, updateData);
+    await TaskModel.updateOne({_id: id}, updateData);
     return await TaskModel.findById({_id: id});
   }
 }

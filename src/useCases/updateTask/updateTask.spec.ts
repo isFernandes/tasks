@@ -1,7 +1,12 @@
+import database from "../../database/config/db";
 import { UpdateTaskService } from "./updateTaskService";
 
 describe('Should test Update Task', ()=>{
-  const update = new UpdateTaskService();
+  let update:any;
+  beforeAll(()=>{
+    database('mongodb+srv://user:a5b4cd@simplecrud.4a9c9.mongodb.net/tasks_teste?retryWrites=true&w=majority').connect()
+    update = new UpdateTaskService();
+  })
 
   it('Should return success on description update', async()=>{
     const payload = { description: 'teste update description' }
@@ -9,8 +14,6 @@ describe('Should test Update Task', ()=>{
 
     const updatedTask = await update.execute(id, payload)
     expect(updatedTask).toMatchObject({description: 'teste update description'})
-
-    
   })
 
   it('Should return success in update of done and undone', async()=>{

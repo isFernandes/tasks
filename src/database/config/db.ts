@@ -8,7 +8,7 @@ class ConnectDatabase {
     mongoose.connect(this.mongoURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: true 
+      useFindAndModify: false 
     }).then(()=>{
       console.log('connection with database: OK!')
     }).catch((error)=>{
@@ -18,4 +18,4 @@ class ConnectDatabase {
   }
 }
 
-export  = new ConnectDatabase()
+export default (connectionString:string) => new ConnectDatabase(connectionString)
