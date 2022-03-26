@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ITasksController } from "../entities/controllers";
-import { ITask } from "../entities/TaskModel";
+import { ITask } from "../entities/UserModel";
 import { TaskService } from "../services/taskService";
 
 const taskService = new TaskService();

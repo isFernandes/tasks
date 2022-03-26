@@ -1,9 +1,9 @@
 import { ITaskService } from "../entities/services";
-import { ITask, TaskModel } from "../entities/TaskModel";
+import { ITask } from "../entities/UserModel";
 import { TaskRepository } from "../repositories/taskRepository";
 import { Service } from "./service";
 
-const repository = new TaskRepository(TaskModel);
+const repository = new TaskRepository();
 class TaskService extends Service implements ITaskService {
   constructor() {
     super(repository);

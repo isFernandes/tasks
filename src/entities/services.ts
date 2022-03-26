@@ -1,5 +1,4 @@
-import { Schema } from "mongoose";
-import { ITask } from "./TaskModel";
+import { ITask } from "./UserModel";
 
 export interface IService {
   create(payload: any): Promise<any>;
@@ -11,4 +10,17 @@ export interface IService {
 
 export interface ITaskService extends IService {
   changeAllTasks(done: boolean): Promise<ITask[]>;
+}
+
+import { IUser } from "./UserModel";
+export interface IUserService extends IService {
+  findByEmail(email: string): Promise<IUser | null>;
+  findOne(filter: object): Promise<IUser | null>;
+}
+
+export interface IPasswordService {
+  recoveryPassword(email: string): Promise<void>;
+  updatePassword(newPass: string): Promise<void>;
+  hashPassword(pass: string, numberHash: number): Promise<string>;
+  comparePassword(sendPass: string, existingPass: string): Promise<boolean>;
 }

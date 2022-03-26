@@ -1,6 +1,6 @@
 require("dotenv").config();
 import express from "express";
-// import mongoose from 'mongoose';
+
 import cors from "cors";
 import { ConnectDatabase } from "./database/config/db";
 import { routers } from "./routers";

@@ -1,13 +1,12 @@
-import { Model } from "mongoose";
 import { ITaskRepository } from "../entities/repositories";
-import { ITask } from "../entities/TaskModel";
+import { ITask, UserModel } from "../entities/UserModel";
 import { Repositories } from "./baseRepository";
 
 class TaskRepository extends Repositories implements ITaskRepository {
   private model: any;
-  constructor(schema: typeof Model) {
-    super(schema);
-    this.model = schema;
+  constructor() {
+    super(UserModel);
+    this.model = UserModel;
   }
 
   async changeAllTasks(done: boolean): Promise<ITask[]> {

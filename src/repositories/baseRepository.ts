@@ -22,6 +22,10 @@ class Repositories implements IRepositories {
   async getById(id: string): Promise<any> {
     return await this.schema.findById({ _id: id });
   }
+
+  async getOne(payload: any): Promise<any> {
+    return await this.schema.findById(payload);
+  }
 }
 
 export { Repositories };
