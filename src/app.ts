@@ -3,7 +3,7 @@ import express from "express";
 // import mongoose from 'mongoose';
 import cors from "cors";
 import { ConnectDatabase } from "./database/config/db";
-import routers from "./routers";
+import { routers } from "./routers";
 
 const app = express();
 app.use(cors());

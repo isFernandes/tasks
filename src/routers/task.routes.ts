@@ -1,16 +1,19 @@
-//main imports
-import createTaskRouter from "../useCases/createTask/createTaskRoute";
-import listTaskRouter from "../useCases/listTask/listTaskRoute";
-import updateTaskRouter from "../useCases/updateTask/updateTaskRoute";
-import changeAllTaskRouter from "../useCases/changeAllTask/changeAllTaskRoute";
-import deleteTaskRouter from "../useCases/deleteTask/deleteTaskRoute";
-import showTaskRouter from "../useCases/showTask/showTaskRoute";
+import { Router } from "express";
+import { TasksController } from "../controllers/TasksController";
 
-export  = {
-  createTaskRouter,
-  showTaskRouter,
-  listTaskRouter,
-  updateTaskRouter,
-  changeAllTaskRouter,
-  deleteTaskRouter
-};
+const tasksRouter = Router();
+
+const PREFIX = "/api/task";
+
+const taskController = new TasksController();
+
+tasksRouter.post(`${PREFIX}/`, taskController.create);
+tasksRouter.get(`${PREFIX}/`, taskController.getAll);
+
+tasksRouter.put(`${PREFIX}/:id`, taskController.update);
+tasksRouter.get(`${PREFIX}/:id`, taskController.getById);
+tasksRouter.delete(`${PREFIX}/:id`, taskController.delete);
+
+tasksRouter.put(`${PREFIX}/all/change`, taskController.changeAll);
+
+export { tasksRouter };

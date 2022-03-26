@@ -1,12 +1,5 @@
-import taskRoutes from "./task.routes"
+import { tasksRouter } from "./task.routes";
 
-const router = [
-  taskRoutes.createTaskRouter,
-  taskRoutes.showTaskRouter,
-  taskRoutes.listTaskRouter,
-  taskRoutes.updateTaskRouter,
-  taskRoutes.changeAllTaskRouter,
-  taskRoutes.deleteTaskRouter
-]
+const routers = [tasksRouter];
 
-export = router
+export { routers };
