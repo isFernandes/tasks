@@ -1,15 +1,15 @@
 import { ITaskService } from "../entities/services";
-import { ITask, IUser } from "../entities/UserModel";
-import { TaskRepository } from "../repositories/taskRepository";
-import { Service } from "./service";
+import { ITask } from "../entities/UserModel";
 import { UserService } from "./userService";
 
-// const repository = new TaskRepository();
 const userService = new UserService();
 class TaskService implements ITaskService {
   async create(userId: string, payload: any) {
     const foundUser = await userService.getById(userId);
-    foundUser.tasks = [...foundUser.tasks, payload];
+
+    if (!!payload.description) {
+      foundUser.tasks = [...foundUser.tasks, payload];
+    }
 
     return await userService.update(userId, foundUser);
   }
@@ -20,22 +20,35 @@ class TaskService implements ITaskService {
   }
 
   async update(userId: string, payload: any) {
-    const foundUser = await userService.getById(userId);
-    let tasks = foundUser.tasks?.map((item: ITask) => {
-      if (item._id === payload?._id) {
-        return payload;
+    let foundUser = await userService.getById(userId);
+    let updatedTask;
+
+    const updatedTasks = foundUser.tasks?.map((item: ITask) => {
+      if (item._id?.toString() === payload?._id) {
+        if (payload.done !== item.done && payload.done !== null) {
+          item.done = payload.done;
+        }
+
+        if (!!payload.description && payload.description !== item.description) {
+          item.description = payload.description;
+        }
+        updatedTask = item;
+        return item;
       }
+
       return item;
     });
 
-    foundUser.tasks = [...foundUser.tasks, tasks];
-
-    return await userService.update(userId, foundUser);
+    foundUser = { ...foundUser, tasks: updatedTasks };
+    await userService.update(userId, foundUser);
+    return updatedTask;
   }
 
   async delete(userId: string, id: string) {
     const foundUser = await userService.getById(userId);
-    let tasks = foundUser.tasks?.filter((item: ITask) => item._id !== id);
+    let tasks = foundUser.tasks?.filter(
+      (item: ITask) => item._id?.toString() !== id
+    );
 
     foundUser.tasks = tasks;
 
@@ -44,19 +57,23 @@ class TaskService implements ITaskService {
 
   async getById(userId: string, id: string) {
     const foundUser = await userService.getById(userId);
-    let task = foundUser.tasks?.filter((item: ITask) => item._id === id);
+
+    const task: ITask = foundUser.tasks?.find(
+      (item: ITask) => item._id?.toString() === id
+    );
 
     return task;
   }
 
   async changeAllTasks(userId: string, done: boolean): Promise<ITask[]> {
     const foundUser = await userService.getById(userId);
-    let tasks = foundUser.tasks?.map((item: ITask) => {
+
+    const changedTasks = foundUser.tasks?.map((item: ITask) => {
       item.done = done;
       return item;
     });
 
-    foundUser.tasks = [...foundUser.tasks, tasks];
+    foundUser.tasks = changedTasks;
 
     return await userService.update(userId, foundUser);
   }
