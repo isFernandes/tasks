@@ -14,7 +14,7 @@ class UserRepository extends Repositories implements IUserRepository {
   }
 
   async findOne(filter: object) {
-    return await this.model.findOne(filter).populate("projects");
+    return await this.model.findOne(filter);
   }
 }
 

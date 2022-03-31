@@ -16,4 +16,4 @@ routers.map((route) => {
 //connection db
 new ConnectDatabase().conn();
 
-export = app;
+export { app };

@@ -9,7 +9,7 @@ import { UserService } from "./userService";
 //instanciando classe
 const userService = new UserService();
 const passService = new PasswordService();
-
+const ONE_DAY = 86400;
 export class AuthService implements IAuthRepository {
   //cadastro do usuario
   async singup(singupData: IUser) {
@@ -42,10 +42,9 @@ export class AuthService implements IAuthRepository {
       name: foundUser.name,
     };
 
-    const token = jwt.sign(dataToken, config.secret, { expiresIn: 86400 });
+    const token = jwt.sign(dataToken, config.secret, { expiresIn: ONE_DAY });
 
     return {
-      ...dataToken,
       token,
     };
   }

@@ -1,25 +1,13 @@
 import { Request, Response } from "express";
-import { ITasksController } from "../entities/controllers";
+import { IUserController } from "../entities/controllers";
 import { ITask } from "../entities/UserModel";
-import { TaskService } from "../services/taskService";
+import { UserService } from "../services/userService";
 
-const taskService = new TaskService();
-class TasksController implements ITasksController {
-  async changeAll(request: Request, response: Response) {
-    const { userId } = request.params;
-    try {
-      await taskService.changeAllTasks(userId, request.body.done);
-      const allTasks = await taskService.getAll(userId);
-      return response.status(200).json(allTasks);
-    } catch (error) {
-      return response.status(500).json(error);
-    }
-  }
-
+const userService = new UserService();
+class UserController implements IUserController {
   async create(request: Request, response: Response) {
-    const { userId } = request.params;
     try {
-      const createdTask = await taskService.create(userId, request.body);
+      const createdTask = await userService.create(request.body);
       return response.status(201).json(createdTask);
     } catch (error: any) {
       return response.status(400).json({ error: error.message });
@@ -27,9 +15,8 @@ class TasksController implements ITasksController {
   }
 
   async delete(request: Request, response: Response) {
-    const { userId } = request.params;
     try {
-      await taskService.delete(userId, request.params.id);
+      await userService.delete(request.params.id);
       return response.status(204).json();
     } catch (error) {
       return response.status(500).json(error);
@@ -37,9 +24,8 @@ class TasksController implements ITasksController {
   }
 
   async getAll(request: Request, response: Response) {
-    const { userId } = request.params;
     try {
-      const allTasks = await taskService.getAll(userId);
+      const allTasks = await userService.getAll();
       return response.status(200).json(allTasks);
     } catch (error) {
       return response.status(500).json(error);
@@ -47,9 +33,8 @@ class TasksController implements ITasksController {
   }
 
   async getById(request: Request, response: Response) {
-    const { userId } = request.params;
     try {
-      const foundedTask = await taskService.getById(userId, request.params.id);
+      const foundedTask = await userService.getById(request.params.id);
       return response.status(200).json(foundedTask);
     } catch (error) {
       return response.status(500).json(error);
@@ -59,12 +44,8 @@ class TasksController implements ITasksController {
   async update(request: Request, response: Response) {
     const data: ITask = {};
 
-    const { userId } = request.params;
     try {
-      const foundedTask: any = await taskService.getById(
-        userId,
-        request.params.id
-      );
+      const foundedTask: any = await userService.getById(request.params.id);
       if (!foundedTask) {
         return response.status(400).json({ error: "Tarefa nâo encontrada!" });
       }
@@ -73,7 +54,7 @@ class TasksController implements ITasksController {
         foundedTask.description
       );
       data.done = this.validateField(request.body.done, foundedTask.done);
-      const updatedTask = await taskService.update(userId, data);
+      const updatedTask = await userService.update(foundedTask._id, data);
       return response.status(200).json(updatedTask);
     } catch (error: any) {
       return response.status(500).json({ error: error.message });
@@ -94,4 +75,4 @@ class TasksController implements ITasksController {
   };
 }
 
-export { TasksController };
+export { UserController };

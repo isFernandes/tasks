@@ -20,7 +20,7 @@ class Service implements IService {
   }
 
   async getById(id: string): Promise<any> {
-    return await this.repository.getById({ _id: id });
+    return await this.repository.getById(id);
   }
 
   async getOne(payload: any): Promise<any> {

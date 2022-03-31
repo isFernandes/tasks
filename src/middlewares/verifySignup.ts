@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { TaskRepository } from "../repositories/taskRepository";
-import { Service } from "../services/service";
+import { UserService } from "../services/userService";
 
-const userService = new TaskRepository();
+const userService = new UserService();
 
 const checkDuplicateUsernameOrEmail = async (
   request: Request,
@@ -10,13 +9,11 @@ const checkDuplicateUsernameOrEmail = async (
   next: NextFunction
 ) => {
   try {
-    const foundUserByName = await userService.getOne({
+    const foundUserByName = await userService.findOne({
       name: request.body.name,
     });
 
-    const foundUserByEmail = await userService.getOne({
-      email: request.body.email,
-    });
+    const foundUserByEmail = await userService.findByEmail(request.body.email);
 
     if (foundUserByName) {
       return response.status(400).send({

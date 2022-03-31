@@ -8,8 +8,13 @@ export interface IService {
   update(id: string, payload: any): Promise<any>;
 }
 
-export interface ITaskService extends IService {
-  changeAllTasks(done: boolean): Promise<ITask[]>;
+export interface ITaskService {
+  changeAllTasks(userId: string, done: boolean): Promise<ITask[]>;
+  create(userId: string, payload: any): Promise<any>;
+  delete(userId: string, id: string): Promise<any>;
+  getAll(userId: string): Promise<any>;
+  getById(userId: string, id: string): Promise<any>;
+  update(userId: string, payload: any): Promise<any>;
 }
 
 import { IUser } from "./UserModel";

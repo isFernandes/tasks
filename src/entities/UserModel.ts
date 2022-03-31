@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 
 export interface ITask {
+  _id?: string;
   description?: string;
   done?: boolean;
   createdAt?: Date;

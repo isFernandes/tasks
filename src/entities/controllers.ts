@@ -8,3 +8,11 @@ export interface ITasksController {
   delete(request: Request, response: Response): Promise<any>;
   getById(request: Request, response: Response): Promise<any>;
 }
+
+export interface IUserController {
+  getAll(request: Request, response: Response): Promise<any>;
+  create(request: Request, response: Response): Promise<any>;
+  update(request: Request, response: Response): Promise<any>;
+  delete(request: Request, response: Response): Promise<any>;
+  getById(request: Request, response: Response): Promise<any>;
+}
